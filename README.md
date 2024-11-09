@@ -1,2 +1,5 @@
 # unusual-database-program
-a key-value store accessed over UDP.
+A key-value store accessed over UDP.
+
+## Insert
+A request is an *insert* if it contains an equals sign.
