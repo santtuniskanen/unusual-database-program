@@ -27,7 +27,8 @@ fn main() -> std::io::Result<()> {
                     if message == "version" {
                         let store = storage.lock().unwrap();
                         if let Some(version) = store.get("version") {
-                            socket.send_to(version.as_bytes(), src)?;
+                            let response = format!("version={}", version);
+                            socket.send_to(response.as_bytes(), src)?;
                         }
                     
                     } else if message.contains('=') {
