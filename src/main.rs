@@ -5,15 +5,13 @@ use std::sync::{Arc, Mutex};
 fn main() -> std::io::Result<()> {
     let storage: Arc<Mutex<HashMap<String, String>>> = Arc::new(Mutex::new(HashMap::new()));
 
-    // I don't know if there is a better way to do this. I've never used Mutex before.
-    // Initialises `version`
     {
         let mut version = storage.lock().unwrap();
         version.insert(
             "version".to_string(),
             "Ken's Key-Value Store 1.0".to_string(),
         );
-    } // Lock is released here.
+    }
 
     let socket = UdpSocket::bind("0.0.0.0:8080")?;
     let mut buf = [0; 1024];
